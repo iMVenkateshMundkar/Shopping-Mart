@@ -1,0 +1,135 @@
+.navbar {
+    width: 100%;
+    height: 65px;
+    background-color: #171717;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    z-index: 50;
+    color: #f4f4f4;
+}
+
+select {
+    border-radius: 8px;
+}
+
+select option {
+    object-fit: cover;
+}
+
+
+.navbar__logo h3{
+    font-size: 1.4rem;
+    color: #f4f4f4;
+    font-style: oblique;
+}
+
+.navbar__links {
+    /* width: 200px; */
+    display: flex;
+    align-items: center;
+    list-style: none;
+    /* justify-content: space-evenly; */
+}
+
+.navbar__links > li {
+    padding-left: 1.5rem;
+}
+
+a{
+    text-decoration: none;
+    color: #f4f4f4;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+}
+
+.cart__link{
+    display: flex;
+    align-items: center;
+    margin-left: 4px;
+}
+
+.cart__icon{
+    background-color: #555;
+    padding: 5px 10px;
+    border-radius: 8px;
+}
+
+.cart__icon:hover{
+    background-color: rgb(15, 158, 110);
+    /* color: #f4f4f4; */
+}
+
+.cart__totalProducts{
+    padding: 6px 10px;
+    background-color: #f4f4f4;
+    border-radius: 50%;
+    color: #171717;
+    margin-left: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.signin, .orders{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.op1{
+    font-size: 0.9rem;
+    color: #d1d1d1;
+    margin-bottom: 5px;
+}
+
+.hover:hover{
+    cursor: pointer;
+}
+
+.menu{
+    width: 47px;
+    height: 45px;
+    display: none;
+    padding: 10px;
+    border-radius: 50%;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.menu > div{
+    width: 100%;
+    height: 3px;
+    background-color: #f4f4f4;
+}
+
+.menu:hover > div{
+    /* background-color: rgb(109, 236, 194); */
+    background-color: #171717;
+}
+
+.menu:hover{
+    background-color: #d2e5e6;
+}
+
+@media (max-width: 860px) {
+    .navbar__links{
+        display: none;
+    }
+    .menu{
+        display: flex;
+    }
+}
+
+@media (max-width: 400px) {
+    .navbar__logo h3{
+        font-size: 1.2rem;
+    }
+}
