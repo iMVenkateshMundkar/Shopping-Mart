@@ -3,11 +3,11 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 // Reducers
-import { cartReducer } from "./reducers/cartReducers";
+import { cartReducer } from "./App/cartReducers/cartReducer";
 import {
   getProductDetailsReducer,
   getProductsReducer,
-} from "./reducers/productReducers";
+} from "./App/productReducers/productReducer";
 // import {
 //   userLogInReducer,
 //   userRegisterReducer,

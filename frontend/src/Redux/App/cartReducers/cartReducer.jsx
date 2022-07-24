@@ -1,4 +1,4 @@
-import * as actionType from "../constants/cartConstants";
+import * as actionType from "./cartConstants";
 const InitiaState = {
   cartItems: [],
 };

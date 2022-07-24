@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 
 // Actions
-import { getProductDetails } from "../Redux/actions/productActions";
-import { addToCart } from "../Redux/actions/cartActions";
+import { getProductDetails } from "../Redux/App/productReducers/productActions";
+import { addToCart } from "../Redux/App/cartReducers/cartActions";
 import Rating from "@mui/material/Rating";
 
 const ProductScreen = () => {

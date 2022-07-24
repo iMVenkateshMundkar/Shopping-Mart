@@ -7,7 +7,10 @@ import { Link } from "react-router-dom";
 import CartItem from "../Components/CartItem";
 
 // Actions
-import { addToCart, removeFromCart } from "../Redux/actions/cartActions";
+import {
+  addToCart,
+  removeFromCart,
+} from "../Redux/App/cartReducers/cartActions";
 
 const CartScreen = () => {
   const dispatch = useDispatch();

@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 // Actions
-import { getProducts } from "../Redux/actions/productActions";
+import { getProducts } from "../Redux/App/productReducers/productActions";
 
 // Components
 import Product from "../Components/Product";
