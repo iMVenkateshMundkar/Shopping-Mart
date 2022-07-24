@@ -1,4 +1,4 @@
-import "../Styles/CartPage.css";
+import "../Styles/CartScreen.css";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -9,7 +9,7 @@ import CartItem from "../Components/CartItem";
 // Actions
 import { addToCart, removeFromCart } from "../Redux/actions/cartActions";
 
-const CartPage = () => {
+const CartScreen = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
@@ -31,8 +31,8 @@ const CartPage = () => {
   };
 
   return (
-    <div className="cartpage">
-      <div className="cartpage__left">
+    <div className="cartScreen">
+      <div className="cartScreen__left">
         <h2>Shopping Cart</h2>
         {cartItems.length === 0 ? (
           <div className="emptyCart">
@@ -52,8 +52,8 @@ const CartPage = () => {
           ))
         )}
       </div>
-      <div className="cartpage__right">
-        <div className="cartpage__info">
+      <div className="cartScreen__right">
+        <div className="cartScreen__info">
           <p>Subtotal ({getCartCount()}) items</p>
           <p>${getCartSubTotal().toFixed(2)}</p>
         </div>
@@ -67,4 +67,4 @@ const CartPage = () => {
   );
 };
 
-export default CartPage;
+export default CartScreen;

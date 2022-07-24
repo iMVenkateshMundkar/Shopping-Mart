@@ -2,14 +2,14 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 
-// Pages
-import HomePage from "./Pages/HomePage";
-import ProductPage from "./Pages/ProductPage";
-import CartPage from "./Pages/CartPage";
-import SignInPage from "./Pages/SignInPage";
-import Orders from "./Pages/Orders";
-import SignUpPage from "./Pages/SignUpPage";
-import CheckOutPage from "./Pages/CheckOutPage";
+// Screens
+import HomeScreen from "./Screens/HomeScreen";
+import ProductScreen from "./Screens/ProductScreen";
+import CartScreen from "./Screens/CartScreen";
+import SignInScreen from "./Screens/SignInScreen";
+import OrdersScreen from "./Screens/OrdersScreen";
+import SignUpScreen from "./Screens/SignUpScreen";
+import CheckOutScreen from "./Screens/CheckOutScreen";
 
 // Components
 import Navbar from "./Components/Navbar";
@@ -25,13 +25,13 @@ function App() {
       <BackDrop show={sideToggle} click={() => setSideToggle(false)} />
       <main>
         <Routes>
-          <Route exact path="/" element={<HomePage />} />
-          <Route exact path="/product/:id" element={<ProductPage />} />
-          <Route exact path="/cart" element={<CartPage />} />
-          <Route exact path="/signin" element={<SignInPage />} />
-          <Route exact path="/order-history" element={<Orders />} />
-          <Route exact path="/signup" element={<SignUpPage />} />
-          <Route exact path="/checkout" element={<CheckOutPage />} />
+          <Route exact path="/" element={<HomeScreen />} />
+          <Route exact path="/product/:id" element={<ProductScreen />} />
+          <Route exact path="/cart" element={<CartScreen />} />
+          <Route exact path="/signin" element={<SignInScreen />} />
+          <Route exact path="/order-history" element={<OrdersScreen />} />
+          <Route exact path="/signup" element={<SignUpScreen />} />
+          <Route exact path="/checkout" element={<CheckOutScreen />} />
         </Routes>
       </main>
     </Router>

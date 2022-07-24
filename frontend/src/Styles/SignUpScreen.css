@@ -1,4 +1,4 @@
-.signuppage {
+.signupScreen {
     /* border:  1px solid red; */
     width: 400px;
     display: flex;
@@ -6,14 +6,14 @@
     margin: 20px auto;
 }
 
-.signuppage__heading{
+.signupScreen__heading{
     font-size: 2rem;
     font-weight: 600;
     margin-bottom: 20px;
     text-align: center;
 }
 
-.signuppage__info {
+.signupScreen__info {
     width: 100%;
     border: 1px solid #a5a5a5;
     border-radius: 5px;
@@ -23,7 +23,7 @@
     box-shadow: rgba(0, 0, 0, 0.6) 0px 5px 15px;
 }
 
-.signuppage__info input {
+.signupScreen__info input {
     width: 100%;
     height: 30px;
     margin-bottom: 20px;
@@ -31,14 +31,14 @@
     padding-left: 10px;
 }
 
-.signuppage__info p {
+.signupScreen__info p {
     font-size: 0.9rem;
     font-weight: bold;
     color: #171717;
     margin-bottom: 5px;
 }
 
-.signuppage__button {
+.signupScreen__button {
     width: 100%;
     height: 35px;
     cursor: pointer;

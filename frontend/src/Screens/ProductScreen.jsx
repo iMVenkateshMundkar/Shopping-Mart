@@ -1,4 +1,4 @@
-import "../Styles/ProductPage.css";
+import "../Styles/ProductScreen.css";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
@@ -8,7 +8,7 @@ import { getProductDetails } from "../Redux/actions/productActions";
 import { addToCart } from "../Redux/actions/cartActions";
 import Rating from "@mui/material/Rating";
 
-const ProductPage = () => {
+const ProductScreen = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [qty, setQty] = useState(1);
@@ -34,14 +34,14 @@ const ProductPage = () => {
   };
 
   return (
-    <div className="productpage">
+    <div className="productScreen">
       {loading ? (
         <h2>Loading...</h2>
       ) : error ? (
         <h2>{error}</h2>
       ) : (
         <>
-          <div className="productpage__left">
+          <div className="productScreen__left">
             <div className="left__img">
               <img
                 className="product__img"
@@ -68,7 +68,7 @@ const ProductPage = () => {
               </p>
             </div>
           </div>
-          <div className="productpage__right">
+          <div className="productScreen__right">
             <div className="right__info">
               <p className="right__price">
                 Total Price: <span>${product.price * qty}</span>
@@ -111,4 +111,4 @@ const ProductPage = () => {
   );
 };
 
-export default ProductPage;
+export default ProductScreen;
