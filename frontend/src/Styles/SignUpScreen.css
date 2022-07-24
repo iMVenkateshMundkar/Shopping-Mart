@@ -31,7 +31,7 @@
     padding-left: 10px;
 }
 
-.signupScreen__info p {
+.signupScreen__info label {
     font-size: 0.9rem;
     font-weight: bold;
     color: #171717;
@@ -44,4 +44,12 @@
     cursor: pointer;
     margin-bottom: 5px;
     margin-top: 5px;
+}
+
+.showPasswordDiv {
+    display: flex;
+    justify-content: space-between;
+}
+.showPasswordDiv .VisibilityOffIcon{
+    cursor: pointer;
 }

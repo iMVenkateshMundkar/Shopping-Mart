@@ -10,12 +10,19 @@ import CartItem from "../Components/CartItem";
 import {
   addToCart,
   removeFromCart,
+  selectProductsForCheckout,
 } from "../Redux/App/cartReducers/cartActions";
 
 const CartScreen = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
+  const { productForCheckout } = cart;
+
+  const checkBoxHandler = (id, qty) => {
+    console.log(id);
+    dispatch(selectProductsForCheckout(id, qty));
+  };
 
   const qtyChangeHandler = (id, qty) => {
     dispatch(addToCart(id, qty));
@@ -32,6 +39,7 @@ const CartScreen = () => {
   const getCartSubTotal = () => {
     return cartItems.reduce((price, item) => item.price * item.qty + price, 0);
   };
+  console.log(productForCheckout);
 
   return (
     <div className="cartScreen">
@@ -51,6 +59,7 @@ const CartScreen = () => {
               item={item}
               qtyChangeHandler={qtyChangeHandler}
               removeFromCartHandler={removeFromCartHandler}
+              checkBoxHandler={checkBoxHandler}
             />
           ))
         )}

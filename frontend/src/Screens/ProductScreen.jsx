@@ -27,7 +27,7 @@ const ProductScreen = () => {
   // console.log("hii", rating);
 
   const addToCartHandler = () => {
-    if (product === {}) {
+    if (product !== {}) {
       dispatch(addToCart(product._id, qty));
       navigate("/cart");
     }

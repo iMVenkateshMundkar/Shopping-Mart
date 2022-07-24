@@ -1,9 +1,10 @@
 import * as actionType from "./cartConstants";
-const InitiaState = {
+const InitialState = {
   cartItems: [],
+  productsForCheckout: [],
 };
 
-export const cartReducer = (state = InitiaState, action) => {
+export const cartReducer = (state = InitialState, action) => {
   switch (action.type) {
     case actionType.ADD_TO_CART:
       const item = action.payload;
@@ -27,6 +28,29 @@ export const cartReducer = (state = InitiaState, action) => {
         ...state,
         cartItems: state.cartItems.filter((x) => x.product !== action.payload),
       };
+
+    case actionType.SELECT_PRODUCTS_FOR_CHECKOUT:
+      const itemForCheckOut = action.payload;
+      const existItemForCheckout = state.productsForCheckout.find(
+        (x) => x.product === itemForCheckOut.product
+      );
+
+      if (existItemForCheckout) {
+        return {
+          ...state,
+          productsForCheckout: state.productsForCheckout.filter(
+            (p) => p.product !== existItemForCheckout.product
+          ),
+        };
+      } else {
+        return {
+          ...state,
+          productsForCheckout: [
+            ...state.productsForCheckout,
+            existItemForCheckout,
+          ],
+        };
+      }
 
     default:
       return state;
