@@ -1,89 +1,98 @@
-import "../Styles/ProductScreen.css";
+import "../Styles/ProductPage.css";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 
 // Actions
-import { getProductDetails } from "../Redux/App/productReducers/productActions";
-import { addToCart } from "../Redux/App/cartReducers/cartActions";
+import { getProductDetails } from "../Redux/App/product/productAction";
+// import { addToCart } from "../Redux/actions/cartActions";
+import { addToCart, selectFromCart } from "../Redux/App/cart/cartAction";
 import Rating from "@mui/material/Rating";
 
-const ProductScreen = () => {
+const ProductPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [qty, setQty] = useState(1);
   const dispatch = useDispatch();
+  const selectedCartItems = useSelector(
+    (state) => state.cart.selectedCartItems
+  );
   const singleProductDetails = useSelector(
     (state) => state.singleProductDetails
   );
-  const { loading, error, product } = singleProductDetails;
+  const { isLoading, error, singleProduct } = singleProductDetails;
 
   useEffect(() => {
-    if (product && id !== product._id) {
+    if (singleProduct && id !== singleProduct._id) {
       dispatch(getProductDetails(id));
     }
-  }, [dispatch]);
-  // const { rating } = product;
-  // console.log("hii", rating);
+  }, [dispatch, getProductDetails]);
 
   const addToCartHandler = () => {
-    if (product !== {}) {
-      dispatch(addToCart(product._id, qty));
+    if (singleProduct) {
+      // dispatch(addToCart(product._id, qty));
+      dispatch(addToCart(singleProduct, qty));
+      let isPresent = selectedCartItems.find(
+        (item) => item._id === singleProduct._id
+      );
+      if (isPresent) {
+        dispatch(selectFromCart(singleProduct, qty));
+      }
       navigate("/cart");
     }
   };
 
   return (
-    <div className="productScreen">
-      {loading ? (
+    <div className="productpage">
+      {isLoading ? (
         <h2>Loading...</h2>
       ) : error ? (
         <h2>{error}</h2>
       ) : (
         <>
-          <div className="productScreen__left">
+          <div className="productpage__left">
             <div className="left__img">
               <img
                 className="product__img"
-                src={product.imageUrl}
+                src={singleProduct.imageUrl}
                 alt="Product"
               />
             </div>
             <div className="left__info">
-              <p className="left__name p">{product.name}</p>
+              <p className="left__name p">{singleProduct.name}</p>
               <p className="left__price p">
-                Price: <span>${product.price}</span>
+                Price: <span>${singleProduct.price}</span>
               </p>
               <div className="left__rating p">
                 <Rating
                   name="half-rating-read"
-                  defaultValue={product.rating}
+                  defaultValue={singleProduct.rating}
                   precision={0.5}
                   style={{ color: "#f4511e" }}
                   readOnly
                 />
               </div>
               <p className="left__description p">
-                Description: <span>{product.description}</span>
+                Description: <span>{singleProduct.description}</span>
               </p>
             </div>
           </div>
-          <div className="productScreen__right">
+          <div className="productpage__right">
             <div className="right__info">
               <p className="right__price">
-                Total Price: <span>${product.price * qty}</span>
+                Total Price: <span>${singleProduct.price * qty}</span>
               </p>
               <p className="right__status">
                 Status:{" "}
                 <span>
-                  {product.countInStock ? "In Stock" : "Out of Stock"}
+                  {singleProduct.countInStock ? "In Stock" : "Out of Stock"}
                 </span>
               </p>
               <p className="right__qty">
                 Qty
                 <span>
                   <select value={qty} onChange={(e) => setQty(e.target.value)}>
-                    {[...Array(product.countInStock).keys()].map((x) => (
+                    {[...Array(singleProduct.countInStock).keys()].map((x) => (
                       <option key={x + 1} value={x + 1}>
                         {x + 1}
                       </option>
@@ -111,4 +120,4 @@ const ProductScreen = () => {
   );
 };
 
-export default ProductScreen;
+export default ProductPage;

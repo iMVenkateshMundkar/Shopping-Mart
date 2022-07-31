@@ -1,21 +1,8 @@
 import "../Styles/Product.css";
 import { Link } from "react-router-dom";
 import Rating from "@mui/material/Rating";
-import { deepOrange } from "@mui/material/colors";
-// import { useNavigate } from 'react-router-dom';
-// import { useDispatch } from 'react-redux';
-
-// Actions
-// import { addToCart } from '../Redux/actions/cartActions';
 
 const Product = ({ name, imageUrl, description, price, productId, rating }) => {
-  // const dispatch = useDispatch();
-  // const navigate = useNavigate();
-
-  // const addToCartHandler = () => {
-  //   dispatch(addToCart(productId, 1));
-  //   navigate("/cart");
-  // }
   return (
     <Link to={`/product/${productId}`}>
       <div className="product">
@@ -38,12 +25,6 @@ const Product = ({ name, imageUrl, description, price, productId, rating }) => {
             {description.substring(0, 100)}...{" "}
           </p>
         </div>
-        {/* <div className="product__buttons">
-            <Link to={`/product/${productId}`} className="product__navigateButton">
-                View
-            </Link>
-            <button className='product__addToCart' onClick={addToCartHandler}>Add to cart</button>
-        </div> */}
       </div>
     </Link>
   );

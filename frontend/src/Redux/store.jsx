@@ -3,11 +3,12 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 // Reducers
-import { cartReducer } from "./App/cartReducers/cartReducer";
+// import { cartReducer } from "./reducers/cartReducers";
+import { cartReducer } from "./App/cart/cartReducer";
 import {
   getProductDetailsReducer,
   getProductsReducer,
-} from "./App/productReducers/productReducer";
+} from "./App/product/productReducer";
 // import {
 //   userLogInReducer,
 //   userRegisterReducer,
@@ -25,14 +26,8 @@ const reducer = combineReducers({
 
 const middleware = [thunk];
 
-const cartFromLocalStorage = localStorage.getItem("cartItems")
-  ? JSON.parse(localStorage.getItem("cartItems"))
-  : [];
-
-const productForCheckOutFromLocalStorage = localStorage.getItem(
-  "cartProductForCheckout"
-)
-  ? JSON.parse(localStorage.getItem("cartProductForCheckout"))
+const cartFromLocalStorage = localStorage.getItem("cartPageData")
+  ? JSON.parse(localStorage.getItem("cartPageData"))
   : [];
 // const userInfoFromLocalStorage = localStorage.getItem("userInfo")
 //   ? JSON.parse(localStorage.getItem("userInfo"))
@@ -40,8 +35,8 @@ const productForCheckOutFromLocalStorage = localStorage.getItem(
 
 const INITIAL_STATE = {
   cart: {
-    cartItems: cartFromLocalStorage,
-    productsForCheckout: productForCheckOutFromLocalStorage,
+    cartItems: cartFromLocalStorage.cartItems,
+    selectedCartItems: cartFromLocalStorage.selectedCartItems,
   },
   // userLogin: {
   //   userInfo: userInfoFromLocalStorage,

@@ -1,28 +1,28 @@
-import "../Styles/HomeScreen.css";
+import "../Styles/HomePage.css";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 // Actions
-import { getProducts } from "../Redux/App/productReducers/productActions";
+import { getProducts } from "../Redux/App/product/productAction";
 
 // Components
 import Product from "../Components/Product";
 
-const HomeScreen = () => {
+const HomePage = () => {
   const dispatch = useDispatch();
   const allProducts = useSelector((state) => state.allProducts);
-  const { products, loading, error } = allProducts;
+  const { products, isLoading, error } = allProducts;
   useEffect(() => {
     if (products.length === 0) {
       dispatch(getProducts());
     }
-  }, []);
+  }, [products.length, dispatch]);
 
   return (
-    <div className="homeScreen">
-      <h2 className="homeScreen__title">Latest Products</h2>
-      <div className="homeScreen__products">
-        {loading ? (
+    <div className="homepage">
+      <h2 className="homepage__title">Latest Products</h2>
+      <div className="homepage__products">
+        {isLoading ? (
           <h2>Loading...</h2>
         ) : error ? (
           <h2>{error}</h2>
@@ -44,4 +44,4 @@ const HomeScreen = () => {
   );
 };
 
-export default HomeScreen;
+export default HomePage;
