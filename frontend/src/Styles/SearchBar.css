@@ -1,0 +1,92 @@
+
+.searchBar {
+  width: 55%;
+  height: 110%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* border-radius: 10px; */
+  background-color: white;
+}
+
+.searchBar input {
+  width: 85%;
+  height: 100%;
+  padding-left: 20px;
+  font-size: 0.95rem;
+  outline: none;
+  border: 2px solid white;
+  /* border-radius: 10px; */
+}
+
+.cross {
+  cursor: pointer;
+}
+
+.searchBar__searchIcon {
+    width: 10%;
+  height: 100%;
+  border: none;
+  background-color: orange;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border-radius: 0px 10px 10px 0px; */
+}
+
+@media (max-width: 1200px) {
+    .searchBar {
+      width: 45%;
+    }
+  
+    .searchBar input {
+      width: 90%;
+    }
+  
+    .searchBar__searchIcon {
+      width: 10%;
+    }
+  }
+  
+  @media (max-width: 1100px) {
+    .searchBar {
+      width: 40%;
+    }
+    .searchBar input {
+      width: 90%;
+    }
+    .searchBar__searchIcon {
+      width: 10%;
+    }
+  }
+  
+  @media (max-width: 1100px) {
+    .searchBar {
+      width: 35%;
+    }
+    .searchBar input {
+      width: 88%;
+    }
+    .searchBar__searchIcon {
+      width: 12%;
+    }
+  }
+  
+  @media (max-width: 860px) {
+    .searchBar {
+      width: 55%;
+    }
+    .searchBar input {
+      width: 87%;
+    }
+    .searchBar__searchIcon {
+      width: 13%;
+    }
+  }
+  
+  @media (max-width: 660px) {
+    .searchBar {
+      display: none;
+    }
+  }

@@ -1,4 +1,4 @@
-.signinpage {
+.loginpage {
   /* border:  1px solid red; */
   width: 400px;
   display: flex;
@@ -6,14 +6,14 @@
   margin: 50px auto;
 }
 
-.signinpage__heading {
+.loginpage__heading {
   font-size: 2rem;
   font-weight: 600;
   margin-bottom: 30px;
   text-align: center;
 }
 
-.signinpage__info {
+.loginpage__info {
   width: 100%;
   border: 1px solid #a5a5a5;
   border-radius: 5px;
@@ -24,8 +24,8 @@
   margin-bottom: 20px;
 }
 
-.signinpage__email,
-.signinpage__password {
+.loginpage__email,
+.loginpage__password {
   width: 100%;
   height: 30px;
   margin-bottom: 30px;
@@ -33,40 +33,40 @@
   padding-left: 10px;
 }
 
-.signinpage__info label {
+.loginpage__info label {
   font-size: 0.9rem;
   font-weight: 550;
   color: #171717;
   margin-bottom: 5px;
 }
 
-.required:after{
+.required:after {
   content: "*";
   color: red;
   margin-left: 5px;
   font-size: 1.2rem;
 }
 
-.signinpage__button {
+.loginpage__button {
   width: 100%;
   height: 35px;
   cursor: pointer;
   margin-bottom: 10px;
 }
 
-.signinpage__wayToSignUp {
+.loginpage__wayToregister {
   width: 56%;
   margin-top: 10px;
   margin: auto;
 }
 
-.signinpage__wayToSignUp a {
+.loginpage__wayToregister a {
   color: blue;
   text-decoration: underline;
   font-size: 1.05rem;
 }
 
-.signinpage__wayToSignUp p {
+.loginpage__wayToregister p {
   margin-bottom: 15px;
   display: flex;
 }

@@ -38,24 +38,6 @@ export const getProductDetails = (id) => async (dispatch) => {
             : e.message,
       })
     );
-  // try {
-  //   dispatch({ type: actionTypes.GET_PRODUCT_DETAILS_REQUEST });
-
-  //   const { data } = await axios.get(`/api/products/${id}`);
-
-  //   dispatch({
-  //     type: actionTypes.GET_PRODUCT_DETAILS_SUCCESS,
-  //     payload: data,
-  //   });
-  // } catch (error) {
-  //   dispatch({
-  //     type: actionTypes.GET_PRODUCT_DETAILS_FAILURE,
-  //     payload:
-  //       error.response && error.response.data.message
-  //         ? error.response.data.message
-  //         : error.message,
-  //   });
-  // }
 };
 
 export const removeProductDetails = () => (dispatch) => {

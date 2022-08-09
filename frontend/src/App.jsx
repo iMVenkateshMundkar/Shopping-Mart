@@ -6,10 +6,11 @@ import { useState } from "react";
 import HomePage from "./Pages/HomePage";
 import ProductPage from "./Pages/ProductPage";
 import CartPage from "./Pages/CartPage";
-import SignInPage from "./Pages/SignInPage";
+import LoginPage from "./Pages/LoginPage";
 import Orders from "./Pages/Orders";
 import SignUpPage from "./Pages/SignUpPage";
 import CheckOutPage from "./Pages/CheckOutPage";
+import UserProfilePage from "./Pages/UserProfilePage";
 
 // Components
 import Navbar from "./Components/Navbar";
@@ -28,7 +29,8 @@ function App() {
           <Route exact path="/" element={<HomePage />} />
           <Route exact path="/product/:id" element={<ProductPage />} />
           <Route exact path="/cart" element={<CartPage />} />
-          <Route exact path="/signin" element={<SignInPage />} />
+          <Route exact path="/login" element={<LoginPage />} />
+          <Route exact path="/user/:id" element={<UserProfilePage />} />
           <Route exact path="/order-history" element={<Orders />} />
           <Route exact path="/signup" element={<SignUpPage />} />
           <Route exact path="/checkout" element={<CheckOutPage />} />
