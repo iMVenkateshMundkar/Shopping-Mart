@@ -1,6 +1,6 @@
 const express = require("express");
 const {
-  RegisterUser,
+  SignupUser,
   LoginUser,
   DeleteUser,
   TokenValidator,
@@ -10,7 +10,7 @@ const auth = require("../middleware/auth");
 const router = express.Router();
 
 // Register User Route
-router.post("/signup", RegisterUser);
+router.post("/signup", SignupUser);
 
 // Login User Route
 router.post("/login", LoginUser);

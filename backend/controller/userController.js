@@ -3,7 +3,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 // register controller
-const RegisterUser = async (req, res) => {
+const SignupUser = async (req, res) => {
   try {
     const { email, password, passwordCheck, name, username, mobile } = req.body;
     // Validate
@@ -93,7 +93,6 @@ const LoginUser = async (req, res) => {
       },
     });
   } catch (error) {
-    console.log(error);
     res.status(500).json({ err: error.message });
   }
 };
@@ -105,7 +104,8 @@ const UpdateUser = async (req, res) => {
       req.body.id,
       req.body.newUser
     );
-    res.json(updatedUser);
+    const getUpdatedUser = await User.findById(req.body.id);
+    res.json(getUpdatedUser);
   } catch (error) {
     res.status(500).json({ err: error.message });
   }
@@ -145,7 +145,7 @@ const TokenValidator = async (req, res) => {
 };
 
 module.exports = {
-  RegisterUser,
+  SignupUser,
   LoginUser,
   UpdateUser,
   DeleteUser,
