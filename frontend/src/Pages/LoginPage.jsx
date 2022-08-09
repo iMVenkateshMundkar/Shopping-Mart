@@ -26,6 +26,11 @@ const LoginPage = () => {
     setEmail("");
     setPassword("");
   };
+
+  const handleResetPassword = () => {
+    navigate("/forgotpassword");
+  };
+
   return (
     <div className="loginpage">
       <p className="loginpage__heading">Log In</p>
@@ -38,7 +43,11 @@ const LoginPage = () => {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-        <label className="required">Password</label>
+        <div className="loginpage__passReset">
+          <label className="required">Password</label>
+          {/* <p onClick={handleResetPassword}>Forgot your password?</p> */}
+        </div>
+
         <input
           className="loginpage__password"
           type="password"
@@ -50,7 +59,7 @@ const LoginPage = () => {
           Log In
         </button>
       </form>
-      <div className="loginpage__wayToregister">
+      <div className="loginpage__wayToSignup">
         <p>
           New user?
           <Link to={"/signup"}>

@@ -16,6 +16,7 @@ import UserProfilePage from "./Pages/UserProfilePage";
 import Navbar from "./Components/Navbar";
 import BackDrop from "./Components/BackDrop";
 import SideDrawer from "./Components/SideDrawer";
+import ForgotPasswordPage from "./Pages/ForgotPasswordPage";
 
 function App() {
   const [sideToggle, setSideToggle] = useState(false);
@@ -31,6 +32,11 @@ function App() {
           <Route exact path="/cart" element={<CartPage />} />
           <Route exact path="/login" element={<LoginPage />} />
           <Route exact path="/user/:id" element={<UserProfilePage />} />
+          {/* <Route
+            exact
+            path="/forgotpassword"
+            element={<ForgotPasswordPage />}
+          /> */}
           <Route exact path="/order-history" element={<Orders />} />
           <Route exact path="/signup" element={<SignUpPage />} />
           <Route exact path="/checkout" element={<CheckOutPage />} />

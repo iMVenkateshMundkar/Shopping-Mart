@@ -28,9 +28,27 @@
 .loginpage__password {
   width: 100%;
   height: 30px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   outline: none;
   padding-left: 10px;
+}
+
+.loginpage__passReset {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.loginpage__passReset p{
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: rgb(6, 6, 156);
+  margin-bottom: 5px;
+}
+
+.loginpage__passReset p:hover{
+  color: rgb(238, 68, 6);
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .loginpage__info label {
@@ -51,22 +69,23 @@
   width: 100%;
   height: 35px;
   cursor: pointer;
+  margin-top: 10px;
   margin-bottom: 10px;
 }
 
-.loginpage__wayToregister {
+.loginpage__wayToSignup {
   width: 56%;
   margin-top: 10px;
   margin: auto;
 }
 
-.loginpage__wayToregister a {
+.loginpage__wayToSignup a {
   color: blue;
   text-decoration: underline;
   font-size: 1.05rem;
 }
 
-.loginpage__wayToregister p {
+.loginpage__wayToSignup p {
   margin-bottom: 15px;
   display: flex;
 }

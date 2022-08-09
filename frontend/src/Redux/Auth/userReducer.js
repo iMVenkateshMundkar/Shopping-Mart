@@ -5,6 +5,9 @@ import {
   USER_LOGOUT_FAILURE,
   USER_LOGOUT_REQUEST,
   USER_LOGOUT_SUCCESS,
+  USER_PROFILE_UPDATE_FAILURE,
+  USER_PROFILE_UPDATE_REQUEST,
+  USER_PROFILE_UPDATE_SUCCESS,
   USER_SIGNUP_FAILURE,
   USER_SIGNUP_REQUEST,
   USER_SIGNUP_SUCCESS,
@@ -66,13 +69,42 @@ export const authReducer = (state = initialState, { type, payload }) => {
         loggedInUser: {},
         error: payload,
       };
+    case USER_PROFILE_UPDATE_REQUEST:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case USER_PROFILE_UPDATE_SUCCESS:
+      let userFromLocalStorage = JSON.parse(localStorage.getItem("userInfo"));
+      localStorage.removeItem("userInfo");
+      localStorage.setItem(
+        "userInfo",
+        JSON.stringify({
+          loggedInUser: payload,
+          isAuth: userFromLocalStorage.isAuth,
+          token: userFromLocalStorage.token,
+        })
+      );
+      return {
+        ...state,
+        token: userFromLocalStorage.token,
+        isAuth: true,
+        loggedInUser: payload,
+        isLoading: false,
+      };
+    case USER_PROFILE_UPDATE_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        error: payload,
+      };
     case USER_LOGOUT_REQUEST:
       return {
         ...state,
         isLoading: true,
       };
     case USER_LOGOUT_SUCCESS:
-      localStorage.removeItem("userinfo");
+      localStorage.removeItem("userInfo");
       return {
         ...state,
         isLoading: false,

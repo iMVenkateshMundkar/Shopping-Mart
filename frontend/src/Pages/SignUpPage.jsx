@@ -65,7 +65,7 @@ function SignUpPage() {
   const [state, setter] = useReducer(reducer, initialState);
   const navigate = useNavigate();
 
-  const handleregister = (e) => {
+  const handleSignup = (e) => {
     e.preventDefault();
     dispatch(userSignup(state)).then((r) => {
       if (r.type === USER_SIGNUP_SUCCESS) {
@@ -83,13 +83,13 @@ function SignUpPage() {
   };
 
   return (
-    <div className="registerpage">
-      <p className="registerpage__heading">Sign Up</p>
-      <form onSubmit={handleregister} className="registerpage__info">
+    <div className="signuppage">
+      <p className="signuppage__heading">Sign Up</p>
+      <form onSubmit={handleSignup} className="signuppage__info">
         <label className="required">Name</label>
         <input
           type="text"
-          className="registerpage__in"
+          className="signuppage__in"
           value={state.name}
           onChange={(e) => setter({ type: "name", payload: e.target.value })}
           required
@@ -97,7 +97,7 @@ function SignUpPage() {
         <label className="required">Username</label>
         <input
           type="text"
-          className="registerpage__in"
+          className="signuppage__in"
           value={state.username}
           onChange={(e) =>
             setter({ type: "username", payload: e.target.value })
@@ -107,7 +107,7 @@ function SignUpPage() {
         <label className="required">Mobile number</label>
         <input
           type="number"
-          className="registerpage__in"
+          className="signuppage__in"
           value={state.mobile}
           onChange={(e) => setter({ type: "mobile", payload: e.target.value })}
           required
@@ -115,7 +115,7 @@ function SignUpPage() {
         <label className="required">Email</label>
         <input
           type="email"
-          className="registerpage__in"
+          className="signuppage__in"
           value={state.email}
           onChange={(e) => setter({ type: "email", payload: e.target.value })}
           required
@@ -139,7 +139,7 @@ function SignUpPage() {
         {showPass ? (
           <input
             type="password"
-            className="registerpage__confirmPass"
+            className="signuppage__confirmPass"
             value={state.password}
             onChange={(e) =>
               setter({ type: "password", payload: e.target.value })
@@ -150,7 +150,7 @@ function SignUpPage() {
         ) : (
           <input
             type="text"
-            className="registerpage__confirmPass"
+            className="signuppage__confirmPass"
             value={state.password}
             onChange={(e) =>
               setter({ type: "password", payload: e.target.value })
@@ -185,7 +185,7 @@ function SignUpPage() {
         {showCPass ? (
           <input
             type="password"
-            className="registerpage__confirmPass"
+            className="signuppage__confirmPass"
             value={state.passwordCheck}
             onChange={(e) =>
               setter({ type: "passwordCheck", payload: e.target.value })
@@ -196,7 +196,7 @@ function SignUpPage() {
           <input
             type="text"
             style={{ marginBottom: "0px" }}
-            className="registerpage__confirmPass"
+            className="signuppage__confirmPass"
             value={state.passwordCheck}
             onChange={(e) =>
               setter({ type: "passwordCheck", payload: e.target.value })
@@ -208,11 +208,11 @@ function SignUpPage() {
           <p className="passwordMatch">Both passwords should match</p>
         )}
 
-        <button type="submit" className="registerpage__button">
+        <button type="submit" className="signuppage__button">
           Sign Up
         </button>
       </form>
-      <div className="registerpage__wayTologin">
+      <div className="signuppage__wayToLogin">
         <p>
           Already have an account?
           <Link to={"/login"}>

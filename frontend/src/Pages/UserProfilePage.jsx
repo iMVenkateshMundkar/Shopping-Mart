@@ -3,7 +3,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useDispatch, useSelector } from "react-redux";
 import "../Styles/UserProfilePage.css";
 import { useNavigate } from "react-router-dom";
-import { userLogout } from "../Redux/Auth/userActions";
+import { userLogout, userProfileUpdate } from "../Redux/Auth/userActions";
 import axios from "axios";
 
 const UserProfilePage = () => {
@@ -17,40 +17,17 @@ const UserProfilePage = () => {
   const [isReadyForEdit, setIsReadyForEdit] = useState(false);
   const navigate = useNavigate();
 
-  const handleEditProfile = async (e) => {
+  const handleEditProfile = (e) => {
     e.preventDefault();
     setIsReadyForEdit(false);
-    await axios({
-      method: "post",
-      url: "/api/update",
-      baseURL: "http://localhost:5000",
-      data: {
-        id: loggedInUser.id,
-        newUser: {
-          name,
-          username,
-          email,
-          mobile,
-        },
-      },
-    })
-      .then((r) => {
-        localStorage.removeItem("userInfo");
-        localStorage.setItem(
-          "userInfo",
-          JSON.stringify({
-            ...user,
-            loggedInUser: {
-              ...user.loggedInUser,
-              name,
-              username,
-              email,
-              mobile,
-            },
-          })
-        );
+    dispatch(
+      userProfileUpdate(loggedInUser.id, {
+        name,
+        username,
+        email,
+        mobile,
       })
-      .catch((e) => console.log("e", e));
+    );
   };
 
   const handleLogOut = () => {
@@ -68,7 +45,9 @@ const UserProfilePage = () => {
       <div className="userprofile__right">
         <div className="userRight__edit">
           <h3>Personal Information</h3>
-          <p onClick={() => setIsReadyForEdit(true)}>Edit</p>
+          <p onClick={() => setIsReadyForEdit((prv) => !prv)}>
+            {isReadyForEdit ? "Cancel" : "Edit"}
+          </p>
         </div>
         <form onSubmit={handleEditProfile} className="userRight__form">
           <div className="userRight__info">
@@ -78,6 +57,7 @@ const UserProfilePage = () => {
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                disabled={!isReadyForEdit}
               />
             </div>
             <div className="userRight__input">
@@ -86,6 +66,7 @@ const UserProfilePage = () => {
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
+                disabled={!isReadyForEdit}
               />
             </div>
             <div className="userRight__input">
@@ -94,6 +75,7 @@ const UserProfilePage = () => {
                 type="text"
                 value={mobile}
                 onChange={(e) => setMobile(e.target.value)}
+                disabled={!isReadyForEdit}
               />
             </div>
             <div className="userRight__input">
@@ -102,6 +84,7 @@ const UserProfilePage = () => {
                 type="text"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                disabled={!isReadyForEdit}
               />
             </div>
           </div>
