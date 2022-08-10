@@ -1,5 +1,5 @@
 import "../Styles/LoginPage.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { userLogin } from "../Redux/Auth/userActions";
@@ -13,6 +13,8 @@ const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
+  const cameFrom = location.state.from.pathname;
   const handlelogin = (e) => {
     e.preventDefault();
     dispatch(userLogin({ email, password })).then((r) => {
@@ -20,15 +22,11 @@ const LoginPage = () => {
       if (r.type === USER_LOGIN_FAILURE) {
         alert("Invalid Email or Password");
       } else if (r.type === USER_LOGIN_SUCCESS) {
-        navigate("/");
+        navigate(cameFrom);
       }
     });
     setEmail("");
     setPassword("");
-  };
-
-  const handleResetPassword = () => {
-    navigate("/forgotpassword");
   };
 
   return (

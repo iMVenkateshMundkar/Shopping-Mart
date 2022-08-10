@@ -25,6 +25,7 @@ const Navbar = ({ click }) => {
     }
   }, [isAuth, loggedInUser.id]);
 
+
   return (
     <div className="navbar">
       {/* logo */}

@@ -7,11 +7,13 @@ import { getProducts } from "../Redux/App/product/productAction";
 
 // Components
 import Product from "../Components/Product";
+import { useLocation } from "react-router-dom";
 
 const HomePage = () => {
   const dispatch = useDispatch();
   const allProducts = useSelector((state) => state.allProducts);
   const { products, isLoading, error } = allProducts;
+
   useEffect(() => {
     if (products.length === 0) {
       dispatch(getProducts());

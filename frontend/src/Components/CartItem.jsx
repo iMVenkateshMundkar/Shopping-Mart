@@ -1,17 +1,19 @@
 import "../Styles/CartItem.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useSelector } from "react-redux";
 const CartItem = ({
   item,
   qtyChangeHandler,
-  removeFromCartHandler,
+  removeHandler,
   selctedCartItemHandler,
 }) => {
   let isSelected;
   const selectedCartItems = useSelector(
     (state) => state.cart.selectedCartItems
   );
+  const location = useLocation();
+  const cameFrom = location.pathname;
   if (selectedCartItems.find((x) => x._id === item._id)) {
     isSelected = true;
   } else {
@@ -20,11 +22,16 @@ const CartItem = ({
 
   return (
     <div className="cartitem">
-      <input
-        type="checkBox"
-        defaultChecked={isSelected}
-        onChange={() => selctedCartItemHandler(item, item.qty)}
-      />
+      {cameFrom === "/checkout" ? (
+        <input type="radio" defaultChecked={true} />
+      ) : (
+        <input
+          type="checkBox"
+          defaultChecked={isSelected}
+          onChange={() => selctedCartItemHandler(item, item.qty)}
+        />
+      )}
+
       <div className="cartitem__img">
         <img className="product__img" src={item.imageUrl} alt={item.name} />
       </div>
@@ -43,14 +50,25 @@ const CartItem = ({
           </option>
         ))}
       </select>
-      <button
-        className="cartitem__removeitem"
-        onClick={() => removeFromCartHandler(item._id)}
-      >
-        <i>
-          <DeleteIcon fontSize="small" />
-        </i>
-      </button>
+      {cameFrom === "/checkout" ? (
+        <button
+          className="cartitem__removeitem"
+          onClick={() => removeHandler(item, item.qty)}
+        >
+          <i>
+            <DeleteIcon fontSize="small" />
+          </i>
+        </button>
+      ) : (
+        <button
+          className="cartitem__removeitem"
+          onClick={() => removeHandler(item._id)}
+        >
+          <i>
+            <DeleteIcon fontSize="small" />
+          </i>
+        </button>
+      )}
     </div>
   );
 };

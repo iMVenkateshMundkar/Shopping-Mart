@@ -43,11 +43,20 @@ const CartPage = () => {
     }
   };
 
-  const getCartCount = () => {
+  const getCartCount = (check) => {
+    if (check) {
+      return cartItems.reduce((qty, item) => Number(item.qty) + qty, 0);
+    }
     return selectedCartItems.reduce((qty, item) => Number(item.qty) + qty, 0);
   };
 
-  const getCartSubTotal = () => {
+  const getCartSubTotal = (check) => {
+    if (check) {
+      return cartItems.reduce(
+        (price, item) => item.price * item.qty + price,
+        0
+      );
+    }
     return selectedCartItems.reduce(
       (price, item) => item.price * item.qty + price,
       0
@@ -70,19 +79,29 @@ const CartPage = () => {
               key={item._id}
               item={item}
               qtyChangeHandler={qtyChangeHandler}
-              removeFromCartHandler={removeFromCartHandler}
+              removeHandler={removeFromCartHandler}
               selctedCartItemHandler={selectedCartItemHandler}
             />
           ))
         )}
       </div>
       <div className="cartpage__right">
-        <div className="cartpage__info">
-          <p>Subtotal ({getCartCount()}) items</p>
-          <p>${getCartSubTotal().toFixed(2)}</p>
+        <div className="cartpage__right__heading">
+          <h4>PRICE DETAILS</h4>
         </div>
-        <div>
-          <button onClick={checkOutHandler}>Proceed To Checkout</button>
+        <div className="cartpage__info">
+          <div>
+            <p>Total ( {getCartCount(true)} items )</p>
+            <p>${getCartSubTotal(true).toFixed(2)}</p>
+          </div>
+          <div>
+            <p>Selected ( {getCartCount(false)} items )</p>
+            <p>${getCartSubTotal(false).toFixed(2)}</p>
+          </div>
+          <hr />
+          <div>
+            <button onClick={checkOutHandler}>Proceed To Checkout</button>
+          </div>
         </div>
       </div>
     </div>

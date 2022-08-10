@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useDispatch, useSelector } from "react-redux";
 import "../Styles/UserProfilePage.css";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import { userLogout, userProfileUpdate } from "../Redux/Auth/userActions";
-import axios from "axios";
 
 const UserProfilePage = () => {
   const dispatch = useDispatch();
@@ -15,7 +14,7 @@ const UserProfilePage = () => {
   const [mobile, setMobile] = useState(loggedInUser.mobile);
   const [email, setEmail] = useState(loggedInUser.email);
   const [isReadyForEdit, setIsReadyForEdit] = useState(false);
-  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleEditProfile = (e) => {
     e.preventDefault();
@@ -32,7 +31,7 @@ const UserProfilePage = () => {
 
   const handleLogOut = () => {
     dispatch(userLogout());
-    navigate("/login");
+    return <Navigate to={"/login"} state={{ from: location }} replace />
   };
 
   return (
