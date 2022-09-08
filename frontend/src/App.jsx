@@ -3,21 +3,24 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 
 // Pages
-import HomePage from "./Pages/HomePage";
-import ProductPage from "./Pages/ProductPage";
-import CartPage from "./Pages/CartPage";
-import LoginPage from "./Pages/LoginPage";
-import Orders from "./Pages/Orders";
-import SignUpPage from "./Pages/SignUpPage";
-import CheckOutPage from "./Pages/CheckOutPage";
-import UserProfilePage from "./Pages/UserProfilePage";
-import PageNotFound from "./Pages/PageNotFound";
+import HomePage from "./Pages/HomePage/HomePage";
+import ProductPage from "./Pages/ProductPage/ProductPage";
+import CartPage from "./Pages/CartPage/CartPage";
+import LoginPage from "./Pages/LoginPage/LoginPage";
+import SignUpPage from "./Pages/SignUpPage/SignUpPage";
+import CheckOutPage from "./Pages/CheckOutPage/CheckOutPage";
+import UserProfilePage from "./Pages/UserProfilePage/UserProfilePage";
+import PageNotFound from "./Pages/PageNotFound/PageNotFound";
+import OrdersPage from "./Pages/OrdersPage/OrdersPage";
+import UserAddressPage from "./Pages/UserAddressPage/UserAddressPage";
+import OrderDetailsPage from "./Pages/OrderDetailsPage/OrderDetailsPage";
+import ForgotPasswordPage from "./Pages/ForgotPasswordPage/ForgotPasswordPage";
 
 // Components
-import Navbar from "./Components/Navbar";
-import BackDrop from "./Components/BackDrop";
-import SideDrawer from "./Components/SideDrawer";
-import RequireAuth from "./Components/RequireAuth";
+import Navbar from "./Components/Navbar/Navbar";
+import BackDrop from "./Components/BackDrop/BackDrop";
+import SideDrawer from "./Components/SideDrawer/SideDrawer";
+import RequireAuth from "./Components/RequireAuth/RequireAuth";
 
 function App() {
   const [sideToggle, setSideToggle] = useState(false);
@@ -43,17 +46,35 @@ function App() {
               </RequireAuth>
             }
           />
-          {/* <Route
+          <Route
+            exact
+            path="/user/:id/address"
+            element={
+              <RequireAuth>
+                <UserAddressPage />
+              </RequireAuth>
+            }
+          />
+          <Route
             exact
             path="/forgotpassword"
             element={<ForgotPasswordPage />}
-          /> */}
+          />
           <Route
             exact
             path="/order-history"
             element={
               <RequireAuth>
-                <Orders />
+                <OrdersPage />
+              </RequireAuth>
+            }
+          />
+          <Route
+            exact
+            path="/order-details"
+            element={
+              <RequireAuth>
+                <OrderDetailsPage />
               </RequireAuth>
             }
           />

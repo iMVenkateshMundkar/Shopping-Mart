@@ -2,11 +2,12 @@ const mongoose = require("mongoose");
 
 const productSchema = new mongoose.Schema(
   {
-    name: {
+    imageUrl: [{ type: String, required: true }],
+    title: {
       type: String,
       required: true,
     },
-    description: {
+    overview: {
       type: String,
       required: true,
     },
@@ -14,18 +15,23 @@ const productSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    countInStock: {
+    priceDiscount: {
       type: Number,
       required: true,
     },
-    imageUrl: {
-      type: String,
+    countInStock: {
+      type: Number,
       required: true,
     },
     rating: {
       type: Number,
       required: true,
     },
+    hairTool: [{ type: String }],
+    hairCategory: [{ type: String }],
+    hairBenefit: [{ type: String }],
+    brand: { type: String },
+    keyIngredients: [{ type: String }],
   },
   {
     collection: "products",
@@ -33,4 +39,5 @@ const productSchema = new mongoose.Schema(
 );
 
 const Product = mongoose.model("product", productSchema);
+
 module.exports = Product;

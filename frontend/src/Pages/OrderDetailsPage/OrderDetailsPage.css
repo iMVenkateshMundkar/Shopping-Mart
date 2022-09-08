@@ -1,0 +1,35 @@
+.orderdetailspage {
+    width: 75%;
+    margin: 5rem auto;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 1rem;
+}
+.orderdetailspage > div{
+    background-color: rgb(241, 241, 241);
+    padding: 1rem;
+}
+
+.orderdetails__address__head{
+    font-size: 1.1rem;
+}
+
+.orderdetails__address__body {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    font-size: 1rem;
+    gap: 10px;
+}
+.orderdetails__body_name{
+    display: flex;
+    gap: 100px;
+    font-weight: 550;
+}
+.orderdetails__pincode {
+    font-weight: 550;
+}
+
+

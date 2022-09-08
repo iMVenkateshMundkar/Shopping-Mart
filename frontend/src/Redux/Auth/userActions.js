@@ -68,12 +68,12 @@ export const userProfileUpdate = (id, newUser) => async (dispatch) => {
     baseURL: "http://localhost:5000",
     data: { id, newUser },
   })
-    .then((r) =>
+    .then((r) => {
       dispatch({
         type: actionTypes.USER_PROFILE_UPDATE_SUCCESS,
         payload: r.data,
-      })
-    )
+      });
+    })
     .catch((e) =>
       dispatch({
         type: actionTypes.USER_PROFILE_UPDATE_FAILURE,

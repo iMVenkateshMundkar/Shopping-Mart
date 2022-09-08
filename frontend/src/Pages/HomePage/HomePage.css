@@ -1,0 +1,94 @@
+.homepage{
+    display: flex;
+    padding: 35px 30px;
+    gap: 35px;
+}
+
+.product__list{
+    flex: 7;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+
+.homepage__heading{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 6px;
+}
+
+.homepage__headTitle{
+    font-family: "Poly Regular", "Times New Roman", serif;
+    color: rgb(0, 0, 0);
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 400;
+}
+
+.homepage__count{
+    font-family: "lato regular", Helvetica, Arial, sans-serif;
+    color: rgb(0, 0, 0);
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    line-height: 19.992px;
+    font-weight: 500;
+}
+
+.homepage__functionality{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.homepage__sorting{
+    display: flex;
+    gap: 16px;
+}
+
+.homepage__sorting label{
+    font-family: "lato regular", Helvetica, Arial, sans-serif;
+    color: rgb(0, 0, 0);
+    font-family: 14px;
+    line-height: 40px;
+    font-weight: 500;
+}
+
+.homepage__sorting select{
+    width: 250px;
+    font-family: "lato regular", Helvetica, Arial, sans-serif;
+    color: rgb(0, 0, 0);
+    font-size: 14px;
+    line-height: 19.992px;
+    padding: 10px;
+    font-weight: 500;
+}
+
+.homepage__title{
+    font-size: 1.5rem;
+    color: #171717;
+    margin-bottom: 1rem;
+    margin-left: 8px;
+}
+
+.homepage__products{
+    display: grid;
+    grid-gap: 30px;
+    grid-template-columns: repeat(3, 1fr);
+    margin-bottom: 50px;
+}
+
+@media (max-width: 850px){
+    .homepage__products{
+        grid-template-columns: repeat(2, auto);
+    }
+}
+
+@media (max-width: 570px){
+    .homepage__products{
+        grid-template-columns: 1fr;
+    }
+}

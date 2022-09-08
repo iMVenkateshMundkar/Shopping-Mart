@@ -4,8 +4,8 @@ const connectDB = require("./config/db");
 const productRoutes = require("./routes/productRoutes");
 const userRoutes = require("./routes/userRoutes");
 const cors = require("cors");
-const { getAllProducts } = require("./controller/productController");
-const User = require("./models/userModel");
+// const { getAllProducts } = require("./controller/productController");
+// const User = require("./models/userModel");
 
 const app = express();
 // middleware

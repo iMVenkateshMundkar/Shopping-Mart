@@ -4,16 +4,12 @@ import { composeWithDevTools } from "redux-devtools-extension";
 
 // Reducers
 import { cartReducer } from "./App/cart/cartReducer";
-import {
-  getProductDetailsReducer,
-  getProductsReducer,
-} from "./App/product/productReducer";
+import { getProductsReducer } from "./App/product/productReducer";
 import { authReducer } from "./Auth/userReducer";
 
 const reducer = combineReducers({
   cart: cartReducer,
-  allProducts: getProductsReducer,
-  singleProductDetails: getProductDetailsReducer,
+  products: getProductsReducer,
   user: authReducer,
 });
 

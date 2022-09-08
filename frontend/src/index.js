@@ -6,18 +6,15 @@ import reportWebVitals from "./reportWebVitals";
 
 import store from "./Redux/store";
 import { Provider } from "react-redux";
-import { BrowserRouter } from "react-router-dom";
 import axios from "axios";
 
-axios.defaults.baseURL = "http://localhost:5000"
+axios.defaults.baseURL = "http://localhost:5000";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  // <BrowserRouter>
-  <Provider store={store}>
-    <App />
-  </Provider>
-  // </BrowserRouter>
+    <Provider store={store}>
+      <App />
+    </Provider>
 );
 
 reportWebVitals();

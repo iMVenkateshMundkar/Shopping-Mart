@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const jwt = require("jsonwebtoken");
 
 const userSchema = new mongoose.Schema(
   {
@@ -25,6 +24,9 @@ const userSchema = new mongoose.Schema(
       required: true,
       minlength: 8,
     },
+    address: [{ type: Object }],
+    orders: [{ type: Object }],
+    cartItems: [{ type: Object }],
   },
   {
     collection: "users",

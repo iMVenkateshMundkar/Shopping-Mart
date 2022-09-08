@@ -43,11 +43,8 @@ const SignupUser = async (req, res) => {
     const passwordHash = await bcrypt.hash(password, salt);
     // Creating out new user notice password value is passwordHash not passowrd
     const newUser = new User({
-      email: email,
+      ...req.body,
       password: passwordHash,
-      name: name,
-      username: username,
-      mobile: mobile,
     });
     const user = await newUser.save();
     res.json({ user });
@@ -85,11 +82,13 @@ const LoginUser = async (req, res) => {
     res.json({
       token,
       user: {
-        id: user._id,
+        _id: user._id,
         name: user.name,
         username: user.username,
         email: user.email,
         mobile: user.mobile,
+        address: user.address,
+        orders: user.orders,
       },
     });
   } catch (error) {
@@ -97,8 +96,16 @@ const LoginUser = async (req, res) => {
   }
 };
 
+const GetUserDetails = async (req, res) => {
+  try {
+    const user = await User.findById(req.body);
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ err: error.message });
+  }
+};
+
 const UpdateUser = async (req, res) => {
-  console.log(req);
   try {
     const updatedUser = await User.findByIdAndUpdate(
       req.body.id,
@@ -147,6 +154,7 @@ const TokenValidator = async (req, res) => {
 module.exports = {
   SignupUser,
   LoginUser,
+  GetUserDetails,
   UpdateUser,
   DeleteUser,
   TokenValidator,

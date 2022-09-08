@@ -1,0 +1,42 @@
+.orderspage{
+    width: 65%;
+    margin: 5rem auto;
+    background-color: white;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.orderspage > p{
+    margin-left: 20px;
+}
+
+.orderspage__body {
+    padding: 0rem 1rem 1rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.orderspage__orderedProduct{
+    color: #171717;
+    padding: 1rem 0rem;
+    background-color: rgb(241, 241, 241);
+    border-radius: 2px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.orderspage__orderedProduct img{
+    width: 100px;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.orderspage__orderStatus {
+    font-size: 0.9rem;
+    font-weight: 550;
+}
+
+
+
