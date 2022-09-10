@@ -38,7 +38,6 @@ function ProductPage() {
     }
   }, [id, singleProduct?.title, singleProduct?.imageUrl?.length])
 
-  console.log(singleProduct);
 
   return (
     <div className='productpage'>

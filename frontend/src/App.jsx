@@ -13,7 +13,6 @@ import UserProfilePage from "./Pages/UserProfilePage/UserProfilePage";
 import PageNotFound from "./Pages/PageNotFound/PageNotFound";
 import OrdersPage from "./Pages/OrdersPage/OrdersPage";
 import UserAddressPage from "./Pages/UserAddressPage/UserAddressPage";
-import OrderDetailsPage from "./Pages/OrderDetailsPage/OrderDetailsPage";
 import ForgotPasswordPage from "./Pages/ForgotPasswordPage/ForgotPasswordPage";
 
 // Components
@@ -26,14 +25,26 @@ function App() {
   const [sideToggle, setSideToggle] = useState(false);
   return (
     <Router>
-      <Navbar click={() => setSideToggle(true)} />
-      <SideDrawer show={sideToggle} click={() => setSideToggle(false)} />
-      <BackDrop show={sideToggle} click={() => setSideToggle(false)} />
       <main>
         <Routes>
-          <Route exact path="/" element={<HomePage />} />
-          <Route exact path="/product/:id" element={<ProductPage />} />
-          <Route exact path="/cart" element={<CartPage />} />
+          <Route exact path="/" element={<>
+            <Navbar click={() => setSideToggle(true)} />
+            <SideDrawer show={sideToggle} click={() => setSideToggle(false)} />
+            <BackDrop show={sideToggle} click={() => setSideToggle(false)} />
+            <HomePage />
+            </>} />
+          <Route exact path="/product/:id" element={<>
+            <Navbar click={() => setSideToggle(true)} />
+            <SideDrawer show={sideToggle} click={() => setSideToggle(false)} />
+            <BackDrop show={sideToggle} click={() => setSideToggle(false)} />
+            <ProductPage />
+            </>} />
+          <Route exact path="/cart" element={<>
+            <Navbar click={() => setSideToggle(true)} />
+            <SideDrawer show={sideToggle} click={() => setSideToggle(false)} />
+            <BackDrop show={sideToggle} click={() => setSideToggle(false)} />
+            <CartPage />
+            </>} />
           <Route exact path="/login" element={<LoginPage />} />
           <Route exact path="/signup" element={<SignUpPage />} />
           <Route exact path="*" element={<PageNotFound />} />
@@ -42,6 +53,9 @@ function App() {
             path="/user/:id"
             element={
               <RequireAuth>
+                <Navbar click={() => setSideToggle(true)} />
+                <SideDrawer show={sideToggle} click={() => setSideToggle(false)} />
+                <BackDrop show={sideToggle} click={() => setSideToggle(false)} />
                 <UserProfilePage />
               </RequireAuth>
             }
@@ -51,6 +65,9 @@ function App() {
             path="/user/:id/address"
             element={
               <RequireAuth>
+                <Navbar click={() => setSideToggle(true)} />
+                <SideDrawer show={sideToggle} click={() => setSideToggle(false)} />
+                <BackDrop show={sideToggle} click={() => setSideToggle(false)} />
                 <UserAddressPage />
               </RequireAuth>
             }
@@ -65,16 +82,10 @@ function App() {
             path="/order-history"
             element={
               <RequireAuth>
+                <Navbar click={() => setSideToggle(true)} />
+                <SideDrawer show={sideToggle} click={() => setSideToggle(false)} />
+                <BackDrop show={sideToggle} click={() => setSideToggle(false)} />
                 <OrdersPage />
-              </RequireAuth>
-            }
-          />
-          <Route
-            exact
-            path="/order-details"
-            element={
-              <RequireAuth>
-                <OrderDetailsPage />
               </RequireAuth>
             }
           />
@@ -83,6 +94,9 @@ function App() {
             path="/checkout"
             element={
               <RequireAuth>
+                <Navbar click={() => setSideToggle(true)} />
+                <SideDrawer show={sideToggle} click={() => setSideToggle(false)} />
+                <BackDrop show={sideToggle} click={() => setSideToggle(false)} />
                 <CheckOutPage />
               </RequireAuth>
             }

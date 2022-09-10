@@ -1,4 +1,4 @@
-const products = [
+let products = [
   {
     imageUrl: [
       "https://static.thcdn.com/images/large/webp//productimg/1600/1600/11286095-9584979066629827.jpg",
@@ -1102,5 +1102,17 @@ const products = [
     rating: 3,
   },
 ];
+
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    let temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
+  return array;
+}
+
+products = shuffle(products);
 
 module.exports = products;

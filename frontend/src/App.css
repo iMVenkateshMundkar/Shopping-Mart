@@ -18,6 +18,7 @@
     line-height: 24px;
     letter-spacing: -0.2px;
     font-weight: 700;
+    margin: 0;
   }
   
   .clicked__button:hover{
@@ -28,3 +29,5 @@
   * {
     font-family: "lato regular", Helvetica, Arial, sans-serif;
   }
+
+ 

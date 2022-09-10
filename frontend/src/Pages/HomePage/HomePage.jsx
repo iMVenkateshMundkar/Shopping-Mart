@@ -36,7 +36,6 @@ const HomePage = () => {
 
   return (
     <div className="homepage">
-      <FilterSidebar />
       <div className="product__list">
         <div className="homepage__heading">
           <p className="homepage__headTitle">Hair Care Products</p>
