@@ -103,7 +103,7 @@ const CheckOutPage = () => {
 
   const getCartSubTotal = () => {
     return selectedCartItems.reduce(
-      (price, item) => item.price * item.qty + price,
+      (price, item) => item.priceDiscount * item.qty + price,
       0
     );
   };

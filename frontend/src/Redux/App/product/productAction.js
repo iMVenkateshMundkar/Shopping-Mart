@@ -1,10 +1,10 @@
 import * as actionTypes from "./productActionTypes";
 import axios from "axios";
 
-export const getProducts = () => async (dispatch) => {
+export const getProducts = ({pageNumber, sortBy}) => async (dispatch) => {
   dispatch({ type: actionTypes.GET_PRODUCTS_REQUEST });
   return await axios
-    .get("/api/products")
+    .get(`/api/products/?page=${pageNumber}&sort=${sortBy}`)
     .then((r) =>
       dispatch({ type: actionTypes.GET_PRODUCTS_SUCCESS, payload: r.data })
     )
@@ -24,7 +24,6 @@ export const getProductDetails = (id) => async (dispatch) => {
   return await axios
     .get(`/api/products/${id}`)
     .then((r) => {
-      console.log("data", r.data);
       dispatch({
         type: actionTypes.GET_PRODUCT_DETAILS_SUCCESS,
         payload: r.data,

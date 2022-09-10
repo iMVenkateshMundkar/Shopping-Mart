@@ -1,5 +1,5 @@
 import "./HomePage.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 // Actions
@@ -11,16 +11,28 @@ import { useLocation, useSearchParams } from "react-router-dom";
 import FilterSidebar from "../../Components/FilterSidebar/FilterSidebar";
 
 const HomePage = () => {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [pageNumber, setPageNumber] = useState(1);
+  const [sortBy, setSortBy] = useState("");
   const dispatch = useDispatch();
   const allProducts = useSelector((state) => state.products);
   const { products, isLoading, error } = allProducts;
 
   useEffect(() => {
-    if (products.length === 0) {
-      dispatch(getProducts());
+    if (products.length === 0 || pageNumber || sortBy) {
+      dispatch(getProducts({pageNumber, sortBy}));
     }
-  }, [products.length, dispatch]);
+  }, [products.length, dispatch, pageNumber, sortBy]);
+
+  useEffect(() => {
+    if (pageNumber || products?.length || sortBy) {
+      let params = {page: pageNumber, size: products.length};
+      sortBy && (params.sortBy = sortBy);
+      setSearchParams(params);
+    }
+  }, [pageNumber, products?.length, sortBy]);
+
+  console.log(products);
 
   return (
     <div className="homepage">
@@ -33,14 +45,21 @@ const HomePage = () => {
         <div className="homepage__functionality">
           <div className="homepage__sorting">
             <label>Sort by</label>
-            <select name="sortOrder">
-              <option value="default">Default</option>
-              <option value="priceAscending">Price:Low to High</option>
-              <option value="priceDescending">Price:High to Low</option>
+            <select name="sortBy" onChange={(e) => setSortBy(e.target.value)}>
+              <option value="">Default</option>
+              <option value="priceAsc">Price:Low to High</option>
+              <option value="priceDesc">Price:High to Low</option>
               <option value="title">A-Z</option>
             </select>
           </div>
-          {/* <div className="products__pagination">pagination</div> */}
+          <div className="products__pagination">
+            <div className={pageNumber === 1 && "current__page__number"} onClick={() => setPageNumber(1)}>1</div>
+            <div className={pageNumber === 2 && "current__page__number"} onClick={() => setPageNumber(2)}>2</div>
+            <div className={pageNumber === 3 && "current__page__number"} onClick={() => setPageNumber(3)}>3</div>
+            <div className={pageNumber === 4 && "current__page__number"} onClick={() => setPageNumber(4)}>4</div>
+            <div className={pageNumber === 5 && "current__page__number"} onClick={() => setPageNumber(5)}>5</div>
+            <div className={pageNumber === 6 && "current__page__number"} onClick={() => setPageNumber(6)}>6</div>
+          </div>
         </div>
         <div className="homepage__products">
           {isLoading ? (
@@ -52,6 +71,14 @@ const HomePage = () => {
               <Product key={product._id} product={product} />
             ))
           )}
+        </div>
+        <div className="products__pagination">
+          <div className={pageNumber === 1 && "current__page__number"} onClick={() => setPageNumber(1)}>1</div>
+          <div className={pageNumber === 2 && "current__page__number"} onClick={() => setPageNumber(2)}>2</div>
+          <div className={pageNumber === 3 && "current__page__number"} onClick={() => setPageNumber(3)}>3</div>
+          <div className={pageNumber === 4 && "current__page__number"} onClick={() => setPageNumber(4)}>4</div>
+          <div className={pageNumber === 5 && "current__page__number"} onClick={() => setPageNumber(5)}>5</div>
+          <div className={pageNumber === 6 && "current__page__number"} onClick={() => setPageNumber(6)}>6</div>
         </div>
       </div>
     </div>

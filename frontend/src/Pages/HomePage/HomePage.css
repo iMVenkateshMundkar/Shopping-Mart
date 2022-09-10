@@ -67,6 +67,23 @@
     font-weight: 500;
 }
 
+.products__pagination{
+    align-self: flex-end;
+    display: flex;
+    align-items: center;
+}
+
+.products__pagination div{
+    padding: 10px 15px;
+    border: 1px solid rgb(38, 38, 38);
+    cursor: pointer;
+}
+
+.current__page__number{
+    background-color: rgb(38, 38, 38);
+    color: rgb(232, 232, 232);
+}
+
 .homepage__title{
     font-size: 1.5rem;
     color: #171717;

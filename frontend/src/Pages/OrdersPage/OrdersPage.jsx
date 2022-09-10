@@ -23,9 +23,9 @@ const OrdersPage = () => {
                   })
                 }
               >
-                <img src={ord_pro.imageUrl} alt="" />
-                <p>{ord_pro.name}</p>
-                <p>${ord_pro.price}</p>
+                <img src={ord_pro.imageUrl[0]} alt="" />
+                <p>{ord_pro.title}</p>
+                <p>${ord_pro.priceDiscount}</p>
                 <p className="orderspage__orderStatus">{ord.order_status}</p>
               </div>
             );

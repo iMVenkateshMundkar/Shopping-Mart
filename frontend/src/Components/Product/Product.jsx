@@ -16,13 +16,16 @@ const Product = ({ product }) => {
   return (
     <Link to={`/product/${product._id}`}>
       <div className="product">
-        <img
-          className="product__img"
-          onMouseEnter={() => handleFocus(true)}
-          onMouseLeave={() => handleFocus(false)}
-          src={product.imageUrl[index]}
-          alt={product.title}
-        />
+        <div
+          className="products__img"
+        >
+          <img
+            onMouseEnter={() => handleFocus(true)}
+            onMouseLeave={() => handleFocus(false)}
+            src={product.imageUrl[index]}
+            alt={product.title}
+          />
+        </div>
         <div className="product__info">
           <div className="product__namePrice">
             <p className="product__name">{product.title}</p>

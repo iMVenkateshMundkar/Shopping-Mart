@@ -6,11 +6,7 @@ export const addToCart = (data, qty) => (dispatch, getState) => {
     dispatch({
       type: actionTypes.ADD_TO_CART_SUCCESS,
       payload: {
-        _id: data._id,
-        name: data.name,
-        imageUrl: data.imageUrl,
-        price: data.price,
-        countInStock: data.countInStock,
+        ...data,
         qty,
       },
     });
@@ -48,11 +44,7 @@ export const selectFromCart = (data, qty) => (dispatch, getState) => {
     dispatch({
       type: actionTypes.SELECT_FROM_CART_SUCCESS,
       payload: {
-        _id: data._id,
-        name: data.name,
-        imageUrl: data.imageUrl,
-        price: data.price,
-        countInStock: data.countInStock,
+        ...data,
         qty,
       },
     });

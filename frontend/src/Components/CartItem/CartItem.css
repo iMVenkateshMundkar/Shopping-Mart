@@ -1,6 +1,5 @@
 .cartitem {
     width: 100%;
-    padding: 1rem;
     margin-bottom: 8px;
     display: grid;
     grid-template-columns: 2fr 4fr 7fr 3fr 3fr 3fr;
@@ -12,6 +11,7 @@
 
 .cartitem__img {
     padding: 0;
+    height: 70%;
 }
 
 .dots {
@@ -35,15 +35,21 @@
 }
 
 .cartitem__name:hover{
-    color: #dd219e;
+    color: #0b068d;
 }
 
 .cartitem__qty{
-    padding: 5px 7px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.cartitem__qty p:nth-child(1), .cartitem__qty p:nth-child(3){
+    padding:2px 7px;
 }
 
 .cartitem__removeitem {
-    padding: 2px 4px;
+    padding: 4px 4px 2px 4px;
     color: red;
     background-color: #f4f4f4;
     border: 1px solid #171717;

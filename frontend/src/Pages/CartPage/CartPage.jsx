@@ -18,6 +18,7 @@ const CartPage = () => {
   const cart = useSelector((state) => state.cart);
   const navigate = useNavigate();
   const { cartItems } = cart;
+  console.log(cartItems);
   const { selectedCartItems } = cart;
   const qtyChangeHandler = (product, qty) => {
     dispatch(addToCart(product, qty));
@@ -51,12 +52,12 @@ const CartPage = () => {
   const getCartSubTotal = (check) => {
     if (check) {
       return cartItems.reduce(
-        (price, item) => item.price * item.qty + price,
+        (price, item) => item.priceDiscount * item.qty + price,
         0
       );
     }
     return selectedCartItems.reduce(
-      (price, item) => item.price * item.qty + price,
+      (price, item) => item.priceDiscount * item.qty + price,
       0
     );
   };

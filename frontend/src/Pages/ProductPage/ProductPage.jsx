@@ -1,27 +1,24 @@
+import React from 'react';
 import "./ProductPage.css";
-import { useState, useEffect } from "react";
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useNavigate } from "react-router-dom";
-import Rating from "@mui/material/Rating";
+import { useNavigate, useParams } from 'react-router-dom';
+import { getProductDetails } from '../../Redux/App/product/productAction';
+import { useState } from 'react';
+import { addToCart, selectFromCart } from '../../Redux/App/cart/cartAction';
 
-// Actions
-import { getProductDetails } from "../../Redux/App/product/productAction";
-import { addToCart, selectFromCart } from "../../Redux/App/cart/cartAction";
-
-const ProductPage = () => {
-  const { id } = useParams();
-  const navigate = useNavigate();
-  const [qty, setQty] = useState(1);
-  const dispatch = useDispatch();
-  console.log(id);
+function ProductPage() {
+  const singleProduct = useSelector(state => state.products.singleProduct);
   const selectedCartItems = useSelector(
     (state) => state.cart.selectedCartItems
   );
-  const singleProductDetails = useSelector((state) => state.products);
-  const { isLoading, error, singleProduct } = singleProductDetails;
-  console.log(singleProductDetails);
+  const [fullImageUrl, setFullImageUrl] = useState("");
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  const [qty, setQty] = useState(1);
+  const navigate = useNavigate();
 
-  const addToCartHandler = () => {
+  const handleAddToCart = () => {
     dispatch(addToCart(singleProduct, qty));
     let isPresent = selectedCartItems.find(
       (item) => item._id === singleProduct._id
@@ -30,101 +27,59 @@ const ProductPage = () => {
       dispatch(selectFromCart(singleProduct, qty));
     }
     navigate("/cart");
-  };
-
-  const goToCheckout = () => {
-    dispatch(selectFromCart(singleProduct, qty));
-    dispatch(addToCart(singleProduct, qty));
-    navigate("/checkout");
-  };
+  }
 
   useEffect(() => {
-    if (id) {
+    if (id || singleProduct?.title === undefined) {
       dispatch(getProductDetails(id));
+      if (singleProduct?.imageUrl?.length > 0) {
+        setFullImageUrl(singleProduct.imageUrl[0]);
+      }
     }
-  }, [id]);
+  }, [id, singleProduct?.title, singleProduct?.imageUrl?.length])
+
   console.log(singleProduct);
 
   return (
-    <div className="productpage">
-      {isLoading ? (
-        <h2>Loading...</h2>
-      ) : error ? (
-        <h2>{error}</h2>
-      ) : (
-        <>
-          <div className="productpage__left">
-            <div className="left__img">
-              <img
-                className="product__img"
-                src={singleProduct.imageUrl[0]}
-                alt="Product"
-              />
-            </div>
-            <div className="left__info">
-              <p className="left__name p">{singleProduct.title}</p>
-              <p className="left__price p">
-                Price: <span>${singleProduct.price}</span>
-              </p>
-              <div className="left__rating p">
-                <Rating
-                  name="half-rating-read"
-                  defaultValue={singleProduct.rating}
-                  precision={0.5}
-                  style={{ color: "#f4511e" }}
-                  readOnly
-                />
-              </div>
-              <p className="left__description p">
-                Description: <span>{singleProduct.overview}</span>
-              </p>
-            </div>
+    <div className='productpage'>
+      {singleProduct?.title !== undefined && <><div className='product__image'>
+        <div className='product__image__list'>
+          {singleProduct.imageUrl.map((image, index) =>
+            <img className={fullImageUrl === image && "selected"} onClick={() => setFullImageUrl(image)} key={index} src={image} alt="" />
+          )}
+        </div>
+        <div className='product__image__full'>
+          <img src={fullImageUrl} alt="" />
+        </div>
+      </div>
+        <div className='productpage__info'>
+          <p className='productpage__title'>{singleProduct.title}</p>
+          {singleProduct.price !== singleProduct.priceDiscount && 
+          <p className='productpage__price'>MSRP: ${singleProduct.price.toFixed(2)}</p>
+        }
+          <p className='productpage__priceDiscount'>${singleProduct.priceDiscount.toFixed(2)}</p>
+          <p className='save__price'>Save: ${(singleProduct.price-singleProduct.priceDiscount).toFixed(2)}</p>
+          <p className='productpage__quantity'>Quantity</p>
+          <div className='productpage__quantity__change'>
+            <button className={qty === 1 ? "disabled" : "hover"} onClick={() => {
+              if (qty > 1){ 
+              setQty(prv => prv-1)
+              }
+              }}>-</button>
+            <div>{qty}</div>
+            <button className={qty === singleProduct.countInStock ? "disabled" : "hover"} onClick={() => {
+              if (qty < singleProduct.countInStock){ 
+              setQty(prv => prv+1)
+              }
+              }}>+</button>
           </div>
-          <div className="productpage__right">
-            <div className="right__info">
-              <p className="right__price">
-                Total Price: <span>${singleProduct.price * qty}</span>
-              </p>
-              <p className="right__status">
-                Status:{" "}
-                <span>
-                  {singleProduct.countInStock ? "In Stock" : "Out of Stock"}
-                </span>
-              </p>
-              <p className="right__qty">
-                Qty
-                <span>
-                  <select value={qty} onChange={(e) => setQty(e.target.value)}>
-                    {[...Array(singleProduct.countInStock).keys()].map((x) => (
-                      <option key={x + 1} value={x + 1}>
-                        {x + 1}
-                      </option>
-                    ))}
-                  </select>
-                </span>
-              </p>
-              <p className="right__button">
-                <button
-                  className="right__addToCart clicked__button"
-                  type="button"
-                  onClick={addToCartHandler}
-                >
-                  Add To Cart
-                </button>
-                <button
-                  onClick={goToCheckout}
-                  className="right__buyNow"
-                  type="button"
-                >
-                  Buy Now
-                </button>
-              </p>
-            </div>
-          </div>
-        </>
-      )}
-    </div>
-  );
-};
+          <p className='product__overview'>{singleProduct.overview}</p>
+          <div onClick={handleAddToCart} className='clicked__button' style={{textAlign: "center"}}>ADD TO CART</div>
+        </div>
+        </>}
 
-export default ProductPage;
+    </div>
+  )
+}
+
+export default ProductPage
