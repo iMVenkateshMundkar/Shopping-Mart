@@ -6,7 +6,7 @@ export const userSignup = (params) => async (dispatch) => {
   return await axios({
     method: "post",
     url: "/api/signup",
-    baseURL: "http://localhost:5000",
+    baseURL: "https://calm-oasis-08477.herokuapp.com/",
     data: params,
   })
     .then((r) =>
@@ -28,7 +28,7 @@ export const userLogin = (params) => async (dispatch) => {
   return await axios({
     method: "post",
     url: "/api/login",
-    baseURL: "http://localhost:5000",
+    baseURL: "https://calm-oasis-08477.herokuapp.com/",
     data: params,
   })
     .then((r) =>
@@ -65,7 +65,7 @@ export const userProfileUpdate = (id, newUser) => async (dispatch) => {
   return await axios({
     method: "post",
     url: "/api/update",
-    baseURL: "http://localhost:5000",
+    baseURL: "https://calm-oasis-08477.herokuapp.com/",
     data: { id, newUser },
   })
     .then((r) => {
