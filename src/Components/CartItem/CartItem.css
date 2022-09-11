@@ -1,0 +1,125 @@
+.cartitem {
+    width: 100%;
+    margin-bottom: 8px;
+    display: grid;
+    grid-template-columns: 2fr 4fr 7fr 3fr 3fr 3fr;
+    gap: 1px;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+    place-items: center;
+}
+
+.cartitem__img {
+    padding: 0;
+    height: 70%;
+}
+
+.dots {
+    border: 1px solid #171717;
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    background-color: gray;
+}
+
+.product__img{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    border-radius: 10px;
+}
+
+.cartitem__name{
+    text-decoration: none;
+    color: #171717;
+}
+
+.cartitem__name:hover{
+    color: #0b068d;
+}
+
+.cartitem__qty{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.cartitem__qty p:nth-child(1), .cartitem__qty p:nth-child(3){
+    padding:2px 7px;
+}
+
+.cartitem__removeitem {
+    padding: 4px 4px 2px 4px;
+    color: red;
+    background-color: #f4f4f4;
+    border: 1px solid #171717;
+    cursor: pointer;
+    transition: all 0.3s ease out;
+    border-radius: 5px;
+}
+
+.cartitem__removeitem:hover,
+.cartitem__removeitem:focus,
+.cartitem__removeitem:active{
+    background-color: #171717;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+@media (max-width: 1130px){
+    .cartitem__name {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 1160px){
+    .cartitem__name {
+        font-weight: 600;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 700px){
+    .cartitem__name {
+        font-weight: 600;
+        font-size: 0.8rem;
+    }
+
+    .cartitem__qty,
+    .cartitem__removeitem{
+        padding: 8px 13px;
+    }
+
+    .cartitem__price{
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 680px){
+    .cartitem__name {
+        font-weight: 600;
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 570px){
+    .cartitem__name {
+        font-size: 0.6rem;
+    }
+}
+
+@media (max-width: 500px){
+    .cartitem__name {
+        font-size: 0.5rem;
+        font-weight: 600;
+    }
+
+    .cartitem__qty,
+    .cartitem__removeitem{
+        padding: 5px 8px;
+    }
+
+    .cartitem__price{
+        font-size: 0.6rem;
+    }
+}
