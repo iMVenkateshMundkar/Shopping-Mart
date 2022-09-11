@@ -32,7 +32,7 @@ const HomePage = () => {
     }
   }, [pageNumber, products?.length, sortBy]);
 
-  console.log(products);
+  // console.log(products);
 
   return (
     <div className="homepage">

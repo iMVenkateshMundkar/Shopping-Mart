@@ -6,48 +6,45 @@ import { useSelector, useDispatch } from "react-redux";
 import { getProducts } from "../../Redux/App/product/productAction";
 
 const SearchBar = () => {
-  const [inputText, setInputText] = useState("");
-  const dispatch = useDispatch();
+  const [query, setQuery] = useState("");
+  const products = useSelector(state => state.products.products);
   const [searchedProducts, setSearchedProducts] = useState([]);
-  const products = useSelector((state) => state.allProducts.products);
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    if (inputText === "") {
-      setSearchedProducts([]);
-    } else {
-      const newSearchedProducts = products.filter(
-        (item) => item.name.toLowerCase() === inputText.toLowerCase()
-      );
-      // console.log(newSearchedProducts);
-    }
-  };
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (products?.length === 0) {
-      dispatch(getProducts());
+    if (query && products?.length === 0) {
+      dispatch(getProducts({}));
     }
-  }, []);
-  // console.log(products);
+  }, [query, products?.length])
+
+  console.log(query);
+
+  // useEffect(() => {
+
+  // }, [])
 
   return (
-    <form onSubmit={handleSearch} className="searchBar">
-      <input
-        type="text"
-        value={inputText}
-        onChange={(e) => setInputText(e.target.value)}
-        placeholder="Search products"
-        required
-      />
-      {inputText && (
-        <div className="cross" onClick={() => setInputText("")}>
-          <ClearIcon color="action" />
+    <div className="searchBar">
+      <div className="searchBar__input">
+        <div>
+          <input
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search products by brands"
+          />
+          {query && (
+            <div className="cross" onClick={() => setQuery("")}>
+              <ClearIcon color="action" />
+            </div>
+          )}
         </div>
-      )}
-      <button type="submit" className="searchBar__searchIcon">
-        <SearchIcon fontSize="medium" />
-      </button>
-    </form>
+        <button type="submit" className="searchBar__searchIcon">
+          <SearchIcon fontSize="medium" />
+        </button>
+      </div>
+      {/* <div className="searchResults"></div> */}
+    </div>
   );
 };
 

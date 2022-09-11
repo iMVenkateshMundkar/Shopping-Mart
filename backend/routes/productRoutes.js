@@ -3,6 +3,7 @@ const router = express.Router();
 const {
   getAllProducts,
   getProductById,
+  getAllBrands,
 } = require("../controller/productController");
 
 // @desc    GET all products from db
@@ -14,5 +15,7 @@ router.get("/", getAllProducts);
 // @route   GET /api/products/;id
 // @access  Public
 router.get("/:id", getProductById);
+
+router.get("/brands", getAllBrands);
 
 module.exports = router;

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Badge from "@mui/material/Badge";
 import { useSelector } from "react-redux";
-// import SearchBar from "./SearchBar";
+import SearchBar from "../SearchBar/SearchBar";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 const Navbar = ({ click }) => {

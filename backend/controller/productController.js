@@ -1,4 +1,4 @@
-const Product = require("../models/productModel");
+const {Product, Brand} = require("../models/productModel");
 
 const getAllProducts = async (req, res) => {
   try {
@@ -33,4 +33,13 @@ const getProductById = async (req, res) => {
   }
 };
 
-module.exports = { getAllProducts, getProductById };
+const getAllBrands = async (req, res) => {
+  try {
+    const brands = await Brand.find({});
+    res.json(brands);
+  } catch (error) {
+    res.status(500).json({ err: error.message });
+  }
+}
+
+module.exports = { getAllProducts, getProductById, getAllBrands };

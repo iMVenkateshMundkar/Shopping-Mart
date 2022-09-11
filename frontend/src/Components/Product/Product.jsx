@@ -49,7 +49,7 @@ const Product = ({ product }) => {
                 style={{ color: "#f4511e" }}
                 readOnly
               />
-              <p className="product__price">${product.price}</p>
+              <p className="product__price">${product.priceDiscount}</p>
             </div>
             <p className="product__overview">
               {product.overview.substring(0, 100)}...{" "}
