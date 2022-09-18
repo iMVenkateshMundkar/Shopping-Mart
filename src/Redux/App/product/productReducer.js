@@ -3,6 +3,7 @@ import * as actionType from "./productActionTypes";
 const initialState = {
   products: [],
   singleProduct: {},
+  brands: [],
   isLoading: false,
   error: "",
 };
@@ -48,10 +49,24 @@ export const getProductsReducer = (state = initialState, { type, payload }) => {
         error: payload,
       };
 
-    case actionType.GET_PRODUCT_DETAILS_RESET:
+    case actionType.GET_BRANDS_REQUEST:
       return {
         ...state,
-        singleProduct: {},
+        isLoading: true,
+      };
+
+    case actionType.GET_BRANDS_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        brands: payload,
+      };
+
+    case actionType.GET_BRANDS_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        error: payload,
       };
 
     default:

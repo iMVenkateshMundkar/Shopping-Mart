@@ -33,7 +33,7 @@ const Navbar = ({ click }) => {
           <h3>Shopping Mart</h3>
         </Link>
       </div>
-      {/* <SearchBar /> */}
+      <SearchBar />
       {/* links */}
       <ul className="navbar__links">
         <li>

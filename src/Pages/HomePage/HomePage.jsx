@@ -17,6 +17,7 @@ const HomePage = () => {
   const dispatch = useDispatch();
   const allProducts = useSelector((state) => state.products);
   const { products, isLoading, error } = allProducts;
+  const brand = searchParams.get("brand");
 
   useEffect(() => {
     if (products.length === 0 || pageNumber || sortBy) {
@@ -28,11 +29,10 @@ const HomePage = () => {
     if (pageNumber || products?.length || sortBy) {
       let params = { page: pageNumber, size: products.length };
       sortBy && (params.sortBy = sortBy);
+      brand && (params.brand = brand);
       setSearchParams(params);
     }
   }, [pageNumber, products?.length, sortBy]);
-
-  console.log(products);
 
   return (
     <div className="homepage">

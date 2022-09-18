@@ -3,25 +3,55 @@ import SearchIcon from "@mui/icons-material/Search";
 import ClearIcon from "@mui/icons-material/Clear";
 import "./SearchBar.css";
 import { useSelector, useDispatch } from "react-redux";
-import { getProducts } from "../../Redux/App/product/productAction";
+import { getBrands, getProducts } from "../../Redux/App/product/productAction";
+import { useSearchParams } from "react-router-dom";
 
 const SearchBar = () => {
   const [query, setQuery] = useState("");
-  const products = useSelector(state => state.products.products);
-  const [searchedProducts, setSearchedProducts] = useState([]);
+  const { brands } = useSelector(state => state.products);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchedBrands, setSearchedBrands] = useState();
+  const [showResultBox, setShowResultsBox] = useState(true);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (query && products?.length === 0) {
-      dispatch(getProducts({}));
+  const page = searchParams.get("page");
+  const size = searchParams.get("size");
+  const sortBy = searchParams.get("sortBy");
+
+
+  const handleSearch = () => {
+    let params = {
+      page,
+      size,
     }
-  }, [query, products?.length])
+    sortBy && (params.sortBy = sortBy);
+    params.brand = query;
+    setSearchParams(params);
+    dispatch(getProducts(page, sortBy, query));
+  }
 
-  console.log(query);
+  useEffect(() => {
+    if (brands?.length === 0) {
+      dispatch(getBrands());
+    }
+  }, [brands?.length])
 
-  // useEffect(() => {
-
-  // }, [])
+  useEffect(() => {
+    if (query) {
+      let temp = brands.filter((item) =>
+        item.toLowerCase().indexOf(query.toLocaleLowerCase()) !== -1
+          ? true
+          : false
+      )
+        .map((item) => {
+          return item;
+        });
+      setSearchedBrands(temp);
+    }
+    else {
+      setSearchedBrands([]);
+    }
+  }, [query]);
 
   return (
     <div className="searchBar">
@@ -30,6 +60,7 @@ const SearchBar = () => {
           <input
             type="text"
             value={query}
+            onFocus={() => setShowResultsBox(true)}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search products by brands"
           />
@@ -39,11 +70,20 @@ const SearchBar = () => {
             </div>
           )}
         </div>
-        <button type="submit" className="searchBar__searchIcon">
+        <button onClick={() => handleSearch()} className="searchBar__searchIcon">
           <SearchIcon fontSize="medium" />
         </button>
       </div>
-      {/* <div className="searchResults"></div> */}
+      {(showResultBox && query.length > 0) && <div className="searchResults">
+        {
+          searchedBrands?.length > 0 && searchedBrands.map(brand => {
+            return <p onClick={() => {
+              setQuery(brand);
+              setShowResultsBox(false)
+            }}>{brand}</p>
+          })
+        }
+      </div>}
     </div>
   );
 };
