@@ -20,8 +20,8 @@ const HomePage = () => {
   const brand = searchParams.get("brand");
 
   useEffect(() => {
-    if (products.length === 0 || pageNumber || sortBy) {
-      dispatch(getProducts({ pageNumber, sortBy }));
+    if (products.length === 0 || pageNumber || sortBy || brand) {
+      dispatch(getProducts({ pageNumber, sortBy, brand }));
     }
   }, [products.length, dispatch, pageNumber, sortBy]);
 

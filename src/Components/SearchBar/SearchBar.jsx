@@ -52,6 +52,7 @@ const SearchBar = () => {
       setSearchedBrands([]);
     }
   }, [query]);
+  console.log(query);
 
   return (
     <div className="searchBar">
@@ -76,8 +77,8 @@ const SearchBar = () => {
       </div>
       {(showResultBox && query.length > 0) && <div className="searchResults">
         {
-          searchedBrands?.length > 0 && searchedBrands.map(brand => {
-            return <p onClick={() => {
+          searchedBrands?.length > 0 && searchedBrands.map((brand, index) => {
+            return <p key={index} onClick={() => {
               setQuery(brand);
               setShowResultsBox(false)
             }}>{brand}</p>

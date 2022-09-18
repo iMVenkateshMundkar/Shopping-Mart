@@ -2,6 +2,7 @@ import * as actionTypes from "./productActionTypes";
 import axios from "axios";
 
 export const getProducts = ({ pageNumber, sortBy, query }) => async (dispatch) => {
+  console.log(query);
   dispatch({ type: actionTypes.GET_PRODUCTS_REQUEST });
   return await axios
     .get(`/api/products/?page=${pageNumber}&sort=${sortBy}&brand=${query}`)
