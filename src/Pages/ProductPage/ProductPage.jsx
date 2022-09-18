@@ -8,7 +8,7 @@ import { useState } from 'react';
 import { addToCart, selectFromCart } from '../../Redux/App/cart/cartAction';
 
 function ProductPage() {
-  const singleProduct = useSelector(state => state.products.singleProduct);
+  const { singleProduct, isLoading, error } = useSelector(state => state.products);
   const selectedCartItems = useSelector(
     (state) => state.cart.selectedCartItems
   );
@@ -41,7 +41,11 @@ function ProductPage() {
 
   return (
     <div className='productpage'>
-      {singleProduct?.title !== undefined && <><div className='product__image'>
+      {isLoading ? (
+        <h2>Loading...</h2>
+      ) : error ? (
+        <h2>{error}</h2>
+      ) : singleProduct?.title !== undefined && <><div className='product__image'>
         <div className='product__image__list'>
           {singleProduct.imageUrl.map((image, index) =>
             <img className={fullImageUrl === image && "selected"} onClick={() => setFullImageUrl(image)} key={index} src={image} alt="" />
@@ -53,29 +57,29 @@ function ProductPage() {
       </div>
         <div className='productpage__info'>
           <p className='productpage__title'>{singleProduct.title}</p>
-          {singleProduct.price !== singleProduct.priceDiscount && 
-          <p className='productpage__price'>MSRP: ${singleProduct.price.toFixed(2)}</p>
-        }
+          {singleProduct.price !== singleProduct.priceDiscount &&
+            <p className='productpage__price'>MSRP: ${singleProduct.price.toFixed(2)}</p>
+          }
           <p className='productpage__priceDiscount'>${singleProduct.priceDiscount.toFixed(2)}</p>
-          <p className='save__price'>Save: ${(singleProduct.price-singleProduct.priceDiscount).toFixed(2)}</p>
+          <p className='save__price'>Save: ${(singleProduct.price - singleProduct.priceDiscount).toFixed(2)}</p>
           <p className='productpage__quantity'>Quantity</p>
           <div className='productpage__quantity__change'>
             <button className={qty === 1 ? "disabled" : "hover"} onClick={() => {
-              if (qty > 1){ 
-              setQty(prv => prv-1)
+              if (qty > 1) {
+                setQty(prv => prv - 1)
               }
-              }}>-</button>
+            }}>-</button>
             <div>{qty}</div>
             <button className={qty === singleProduct.countInStock ? "disabled" : "hover"} onClick={() => {
-              if (qty < singleProduct.countInStock){ 
-              setQty(prv => prv+1)
+              if (qty < singleProduct.countInStock) {
+                setQty(prv => prv + 1)
               }
-              }}>+</button>
+            }}>+</button>
           </div>
           <p className='product__overview'>{singleProduct.overview}</p>
-          <div onClick={handleAddToCart} className='clicked__button' style={{textAlign: "center"}}>ADD TO CART</div>
+          <div onClick={handleAddToCart} className='clicked__button' style={{ textAlign: "center" }}>ADD TO CART</div>
         </div>
-        </>}
+      </>}
 
     </div>
   )

@@ -17,7 +17,7 @@ const CartPage = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const navigate = useNavigate();
-  const { cartItems } = cart;
+  const { cartItems, isLoading, error } = cart;
   console.log(cartItems);
   const { selectedCartItems } = cart;
   const qtyChangeHandler = (product, qty) => {
@@ -65,7 +65,11 @@ const CartPage = () => {
     <div className="cartpage">
       <div className="cartpage__left">
         <p className="allPagesHeadings">Shopping Cart</p>
-        {cartItems.length === 0 ? (
+        {isLoading ? (
+          <h2>Loading...</h2>
+        ) : error ? (
+          <h2>{error}</h2>
+        ) : cartItems.length === 0 ? (
           <div className="emptyCart">
             <img
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8BuEm44LyVtvT35TqKQF3ANmRzACogr6WiQ&usqp=CAU"

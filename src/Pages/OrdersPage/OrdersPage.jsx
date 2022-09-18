@@ -3,13 +3,18 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const OrdersPage = () => {
-  const orders = useSelector((state) => state.user.loggedInUser.orders);
+  const { loggedInUser, isLoading, error } = useSelector((state) => state.user);
+  const { orders } = loggedInUser;
 
   return (
     <div className="orderspage">
       <p className="allPagesHeadings">My Orders</p>
       <div className="orderspage__body">
-        {orders.map((ord) => {
+        {isLoading ? (
+          <h2>Loading...</h2>
+        ) : error ? (
+          <h2>{error}</h2>
+        ) : orders.map((ord) => {
           return ord.ordered_products.map((ord_pro) => {
             return (
               <div
