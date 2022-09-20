@@ -69,7 +69,7 @@
 }
 
 .signuppage__wayToLogin {
-  width: 61%;
+  width: 80%;
   margin-top: 20px;
   margin: auto;
 }
@@ -102,7 +102,7 @@
     width: 350px;
   }
   .signuppage__wayToLogin {
-    width: 70%;
+    width: 90%;
   }
 }
 
